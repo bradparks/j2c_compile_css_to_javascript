@@ -1,5 +1,7 @@
 # j2c
 
+[![Join the chat at https://gitter.im/pygy/j2c](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pygy/j2c?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 JavaScript to CSS compiler. ~820 bytes mingzipped.
 
 Think SASS, but with JSONish syntax.
