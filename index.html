@@ -7,7 +7,7 @@
 <meta name=viewport content="width=device-width, initial-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
 <script>
-var j2c=function(){function n(e,r,c,t,i,o,s){switch(a.call(e)){case u:for(i=e.length;i--;)n(e[i],r,c,t);break;case f:c=c&&c+"-";for(i in e)if(o=e[i],i.indexOf("$")+1)for(s in i=i.split("$").reverse())l.call(i,s)&&n(o,r,c+i[s],t);else n(o,r,c+i,t);break;default:for(r.push(e=(c&&c.replace(/_/g,"-")+":")+e+";"),i=t.length;i--;)r.push("-"+t[i]+"-"+e)}}function e(n,e,c,t,i,a){t=[];for(a in e)if(l.call(e,a))for(i in n)l.call(n,i)&&t.push(r(n[i],e[a],c));return t}function r(n,e,r){return r&&e.indexOf("&")+1?e.replace(/&/g,n):n+e}function c(t,s,h,p,w,d,g){switch(g=t,a.call(t)){case u:for(w=t.length;w--;)c(t[w],s,h,p);break;case f:g={};for(w in t)"@"==w[0]&&(d=t[w],a.call(d)==o?s.push(w+" "+d+";"):w.match(/^@keyframes /)?(s.push("}"),c(d,s,"",p),s.push(w+"{"),s.push("}"),c(d,s,"",["webkit"]),s.push("@-webkit-"+w.slice(1)+"{")):w.match(/^@font-face/)?c(d,s,w,i):(s.push("}"),c(d,s,h,p),s.push(w+"{")));for(w in t)d=t[w],w.match(/^[-\w$]+$/)?g[w]=d:"@"!=w[0]&&c(d,s,h.indexOf(",")+w.indexOf(",")+2?e(h.split(","),w.split(","),1).join(","):r(h,w,1),p);case o:for(w in g)if(l.call(g,w)){s.push("}"),n(g,s,"",p),s.push((h||"*")+"{");break}}}function t(n){return n.reverse().join("\n")}var i=[],a={}.toString,l={}.hasOwnProperty,f=a.call({}),u=a.call(i),o=a.call(""),s="_j2c_"+(1e9*Math.random()|0)+"_"+1*new Date+"_",h=0,p={};return p.inline=function(e,r,c){return n(e,c=[],"",r||i),t(c)},p.sheet=function(n,e,r){return c(n,r=[],"",e||i),t(r)},p.scoped=function(n,e,r){var a={},f=[];e=e||i;for(r in n)l.call(n,r)&&(a[r]=r.replace(/[^\-\w]/,"")+s+h++,c(n[r],f,"."+a[r],e));f=new String(t(f));for(r in n)l.call(n,r)&&(f[r]=a[r]);return f},p.prefix=function(n,r){return e(r.map(function(n){return"-"+n+"-"}).concat([""]),[n])},p}();
+var j2c=function(){function n(e,r,i,t,a,u,s,h){switch(c.call(e)){case o:for(u=e.length;u--;)n(e[u],r,i,t,a);break;case f:i=i&&i+"-";for(u in e)if(s=e[u],u.indexOf("$")+1)for(h in u=u.split("$").reverse())l.call(u,h)&&n(s,r,i+u[h],t,a);else n(s,r,i+u,t,a);break;default:for(u=i&&i.replace(/_/g,"-")+":",!a||"animation-name:"!=u&&"animation:"!=u||(e=e.split(",").map(function(n){return n.replace(/([-\w]+)/,a)}).join(",")),r.push(e=u+e+";"),u=t.length;u--;)r.push("-"+t[u]+"-"+e)}}function e(n,e,i,t,a,c){t=[];for(c in e)if(l.call(e,c))for(a in n)l.call(n,a)&&t.push(r(n[a],e[c],i));return t}function r(n,e,r){if(r&&n&&!(e.indexOf("&")+1))throw"'&' is mandatory in sub-selector '"+e+"'";return r&&e.indexOf("&")+1?e.replace(/&/g,n):n+e}function i(t,s,h,p,w,d,m,g){switch(g=t,c.call(t)){case o:for(d=t.length;d--;)i(t[d],s,h,p,w);break;case f:g={};for(d in t)"@"==d[0]&&(m=t[d],c.call(m)==u?s.push(d+" "+m+";"):d.match(/^@keyframes /)?(d=w?d.replace(/ ([-\w]+)/,w):d,s.push("}"),i(m,s,"",p,w),s.push(d+"{"),s.push("}"),i(m,s,"",["webkit"]),s.push("@-webkit-"+d.slice(1)+"{")):d.match(/^@font-face/)?i(m,s,d,a):(s.push("}"),i(m,s,h,p,w),s.push(d+"{")));for(d in t)m=t[d],d.match(/^[-\w$]+$/)?g[d]=m:"@"!=d[0]&&i(m,s,h.indexOf(",")+d.indexOf(",")+2?e(h.split(","),d.split(","),1).join(","):r(h,d,1),p,w);case u:for(d in g)if(l.call(g,d)){s.push("}"),n(g,s,"",p,w),s.push((w?h.replace(/\.([-\w]+)/g,w):h||"*")+"{");break}}}function t(n,e){return e&&e(n),n.reverse().join("\n")}var a=[],c={}.toString,l={}.hasOwnProperty,f=c.call({}),o=c.call(a),u=c.call(""),s="_j2c_"+(1e9*Math.random()|0)+"_"+1*new Date+"_",h=0,p={};return p.inline=function(e,r,i){return n(e,i=[],"",r||a),t(i)},p.sheet=function(n,e,r,c){e=e||{};var f=s+h++,o=e.global||[],u={};i(n,r=[],"",e.vendors||a,o===!0?!1:function(n,e){return o.indexOf(n)+1||"."!=n[0]&&o.indexOf(e)+1?n:(u[e]||(u[e]=e+f),n+f)}),r=new String(t(r,e.then));for(c in u)l.call(u,c)&&(r[c]=u[c]);return r},p.prefix=function(n,r){return e(r.map(function(n){return"-"+n+"-"}).concat([""]),[n])},p}();
 /*
 Copyright © 2015 Pierre-Yves Gérardy
 
@@ -46,12 +46,12 @@ var pocketgrid = {
         "*zoom: 1",
         border_box,
         {
-            ":before,:after": {
+            "&:before,&:after": {
                 display: "table",
                 content: '""',
                 line_height: 0
             },
-            ":after": {clear:"both"},
+            "&:after": {clear:"both"},
             "list-style-type":"none",
             margin$padding:0
         }
@@ -192,7 +192,7 @@ var pagestyle = j2c.sheet({
                 height:"17em"
             },
 
-            " .container":[
+            "& .container":[
                 pocketgrid.group,
                 {
                     margin: "0 auto",
@@ -202,7 +202,7 @@ var pagestyle = j2c.sheet({
                 }
             ],
 
-            " h2, h6": [
+            "& h2,& h6": [
                 pocketgrid.block,
                 {
                     text_align: "center",
@@ -213,7 +213,7 @@ var pagestyle = j2c.sheet({
                 }
             ],
 
-            " h2":{
+            "& h2":{
                 color: "#fff",
                 font_size: "2.4em",
                 text_shadow: logo.h2Outline,
@@ -224,13 +224,13 @@ var pagestyle = j2c.sheet({
                         bottom: "0.62em"
                     }
                 },
-                " big": {
+                "& big": {
                     line_height:"0.75em",
                     font_size:"1.333em"
                 }
             },
 
-            " h6": {
+            "& h6": {
                 background_color:"#fff",
                 color: "#fff",
                 font_size: "1.6em",
@@ -242,7 +242,7 @@ var pagestyle = j2c.sheet({
                     padding_top:0
                 }
             },
-            " .logo": [
+            "& .logo": [
                 pocketgrid.block,
                 {
                     position: "relative",
@@ -251,7 +251,7 @@ var pagestyle = j2c.sheet({
                     }
                 }
             ],
-            " h1": [
+            "& h1": [
                 {
                     background: logo.bg2,
                     color: logo.color,
@@ -273,15 +273,15 @@ var pagestyle = j2c.sheet({
                     },
 
 
-                    " .Jay": {
+                    "& .Jay": {
                         display:"inline-block",
                         position:"relative",
-                        ":after": {
+                        "&:after": {
                             content:'"J"',
                             margin_left:"-0.025em",
                             padding_left:"0.025em"
                         },
-                        ":before":{
+                        "&:before":{
                             background:logo.bg,
                             bottom:"-0.2em",
                             width:"0.537em",
@@ -289,7 +289,7 @@ var pagestyle = j2c.sheet({
                             content:'" "',
                   }
                     },
-                    " .two":{
+                    "& .two":{
                         color: logo.two_color,
                         font: {
                             size: "0.643em",
@@ -302,21 +302,21 @@ var pagestyle = j2c.sheet({
                         z_index: 4
                     },
 
-                    " .Cee": {
+                    "& .Cee": {
                         color: logo.color,
                         display:"inline-block",
                         margin_left: "-0.015em",
                         position: "relative",
                         width:"0.525em",
-                        ":after": {
+                        "&:after": {
                             content:'"C"',
                             width:"0.538em"
                         },
                     }
                 }
             ],
-            " h1 .Jay, h1 .Cee": {
-                ":after": [{
+            "& h1 .Jay,& h1 .Cee": {
+                "&:after": [{
                     background_color:  logo.bg_color,
                     display: "block",
                     height: "0.49em",
@@ -325,7 +325,7 @@ var pagestyle = j2c.sheet({
                     position: "absolute",
                     bottom:"42%"
                 },{"background":logo.bg}],
-                ":before": {
+                "&:before": {
                     background_color:  logo.bg_color,
                     bottom:"-0.2em",
                     display: "block",
@@ -348,19 +348,19 @@ var pagestyle = j2c.sheet({
             position:"relative",
             line_height:"1.5em",
             padding:[0, {left$right:"1em"}],
-            "> *":{
+            "&> *":{
                 font_size:"1.3em",
             },
-            " #playground>*:after": {
+            "& #playground>*:after": {
               content: "",
               display: "table",
               clear: "both"
             },
-            " .wrapperNode":[
+            "& .wrapperNode":[
               pocketgrid.group,
             ],
 
-            " .codeNode, .styleNode":[
+            "& .codeNode,& .styleNode":[
                 pocketgrid.block,
                 {
                   border: [
@@ -370,7 +370,7 @@ var pagestyle = j2c.sheet({
                   display: "table-cell",
                   height: "100%",
                   margin_bottom:"1em",
-                  " .CodeMirror":{
+                  "& .CodeMirror":{
                     height: "inherit",
                     "@media  (min-width:48.001em)":{
                         height: "20em"
@@ -379,16 +379,16 @@ var pagestyle = j2c.sheet({
               }
             ],
             "@media  (min-width:48.001em)":{
-                " .codeNode, .styleNode": {
+                "& .codeNode,& .styleNode": {
                   width:"50%"
                 },
-                " .codeNode": {
+                "& .codeNode": {
                   border:{
                     right_width:"6px",
                     top$bottom: {right_radius: 0}
                   }
                 },
-                " .styleNode": {
+                "& .styleNode": {
                   border:{
                     left_width:"6px",
                     top$bottom: {left_radius: 0}
@@ -397,7 +397,7 @@ var pagestyle = j2c.sheet({
             }
         }
     ],
-    " footer":{
+    "& footer":{
         background: logo.mainbg,
         border_top: "1px dotted "+ "#dd5",
         color: "#fff",
@@ -405,10 +405,10 @@ var pagestyle = j2c.sheet({
         padding: {bottom$top: "1em"},
         text: {
           align: "center",
-          shadow: logo.h6Outline
+          shadow: outline(85, 30, "#357")
         }
     },
-    ".ghribbon":{
+    "&.ghribbon":{
         background_color:"#a00",//logo.subtitle_color,
         font_weight:600,
         left: "-6.9em",
@@ -422,10 +422,10 @@ var pagestyle = j2c.sheet({
             transform: "rotate(-45deg) scaleX(0.85)",
             user_select: "none"
         },
-        ":hover": {
+        "&:hover": {
             box_shadow: "0 0 8px rgba(0,0,0,0.6)"
         },
-        " a": {
+        "& a": {
             border:"solid 1px rgba(255,255,255,0.65)",
             color:"#f8f8f8",
             display:"block",
@@ -441,14 +441,14 @@ var pagestyle = j2c.sheet({
             },
             transition: "all 0.3s",
             width:"15em",
-            ":hover,:hover::before": {
+            "&:hover,&:hover:before": {
                 border:"solid 1px #fff",
                 color:"#fff",
                 text: {
                     shadow: "0 0 5px rgba(255,255,255,0.3)"
                 }
             },
-            "::before": {
+            "&:before": {
                 height$width: "100%",
 
                 border: "dashed 1px  rgba(255,255,255,0.45)",
@@ -456,7 +456,7 @@ var pagestyle = j2c.sheet({
                 margin: {top: "-9px", left: "-6em"},
                 position: "absolute",
             },
-            "::after": {
+            "&:after": {
                 content:"' '",
                 display:"block",
                 height: "7em",
@@ -470,7 +470,7 @@ var pagestyle = j2c.sheet({
             position:"fixed"
         }
     },
-})
+}, {global:true})
 
 var css = pagestyle;
     head = document.head || document.getElementsByTagName('head')[0],
@@ -654,9 +654,12 @@ and back. I'd rather avoid having three sytaxes for the same thing.
 
 #### There's another project called "j2c"
 
-There are at least two other programming-related things called "j2c": a [Java
-to C++ compiler](https://code.google.com/a/eclipselabs.org/p/j2c/) and the
-[J2EE connector architecture](https://en.wikipedia.org/wiki/Java_EE_Connector_Architecture).
+There are at least three other programming-related things called "j2c": 
+- a [Java
+to C++ compiler](https://code.google.com/a/eclipselabs.org/p/j2c/), 
+- the
+[J2EE connector architecture](https://en.wikipedia.org/wiki/Java_EE_Connector_Architecture) and
+- the [JPEG 2000 codestream](http://fileformats.archiveteam.org/wiki/JPEG_2000_codestream).
 I believe that they are sufficiently different in scope for the naming collision
 not to be relevant.
 
