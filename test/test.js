@@ -249,7 +249,7 @@ function randInt() {
     test("composed selector : child with a given class", function() {
         check(
             j2c.sheet({" p": {
-                " .foo":{bar:"baz"}
+                "& .foo":{bar:"baz"}
             }}, {global:true}),
 
             "p .foo{bar:baz}"
@@ -259,7 +259,7 @@ function randInt() {
     test("composed selector: add a class to the root", function() {
         check(
             j2c.sheet({" p": {
-                ".foo":{bar:"baz"}
+                "&.foo":{bar:"baz"}
             }}, {global:true}),
 
             "p.foo{bar:baz}"
@@ -280,7 +280,7 @@ function randInt() {
         check(
             j2c.sheet({" p": {
                 foo:"bar",
-                " .foo":{bar:"baz"}
+                "& .foo":{bar:"baz"}
             }}, {global:true}),
 
             ["p .foo{bar:baz} p {foo:bar}", "p {foo:bar} p .foo{bar:baz}"]
@@ -297,8 +297,8 @@ function randInt() {
     test("1 x 2", function() {
         check(
             j2c.sheet({" p": {
-                " .foo":{
-                    ":before,:after":{
+                "& .foo":{
+                    "&:before,&:after":{
                         foo:"bar"
                     }
                 }
@@ -311,8 +311,8 @@ function randInt() {
     test("2 x 1", function() {
         check(
             j2c.sheet({" p": {
-                " .foo, .bar":{
-                    ":before":{
+                "& .foo,& .bar":{
+                    "&:before":{
                         foo:"bar"
                     }
                 }
@@ -325,8 +325,8 @@ function randInt() {
     test("2 x 2", function() {
         check(
             j2c.sheet({" p": {
-                " .foo, .bar":{
-                    ":before,:after":{
+                "& .foo,& .bar":{
+                    "&:before,&:after":{
                         foo:"bar"
                     }
                 }
@@ -340,8 +340,8 @@ function randInt() {
     test("2 x 3 one of which is empty", function() {
         check(
             j2c.sheet({" p": {
-                " .foo, .bar":{
-                    ",:before,:after":{
+                "& .foo,& .bar":{
+                    "&,&:before,&:after":{
                         foo:"bar"
                     }
                 }
@@ -382,8 +382,8 @@ function randInt() {
     test("2 x 2", function() {
         check(
             j2c.sheet({" p": {
-                " .foo, .bar":{
-                    " .baz &, .qux":{
+                "& .foo,& .bar":{
+                    " .baz &,& .qux":{
                         foo:"bar"
                     }
                 }
@@ -602,7 +602,7 @@ function randInt() {
     });
 
     test("two local classes, nested", function(){
-        var css = j2c.sheet({".bit":{foo:5,".bat":{bar:6}}});
+        var css = j2c.sheet({".bit":{foo:5,"&.bat":{bar:6}}});
         expect(css.bit.slice(0,8)).to.be("bit_j2c_");
         expect(css.bit.slice(4)).to.be(css.bat.slice(4));
         expect(css.indexOf("." + css.bit + "{\nfoo:5;\n}")).not.to.be(-1);
@@ -683,7 +683,7 @@ function randInt() {
         for (var i = 17; i--;){
             o = {" p":{}}
             o[" p"][prop] = 5
-            o[" p"]["."+klass] = {foo:6}
+            o[" p"]["&."+klass] = {foo:6}
             o[" p"]["@media (min-width:" + width + "em)"] = {bar:7}
             if (
                 normalize(j2c.sheet(o, {global:true})) 
@@ -693,14 +693,14 @@ function randInt() {
             o = {" p":{}}
             o[" p"][prop] = 5
             o[" p"]["@media (min-width:" + width + "em)"] = {bar:7}
-            o[" p"]["."+klass] = {foo:6}
+            o[" p"]["&."+klass] = {foo:6}
             if (
                 normalize(j2c.sheet(o, {global:true})) 
                 != 
                 normalize("p{" + prop +":5;} p." + klass + "{foo:6;} @media (min-width:" + width + "em){p{bar:7;}}")
             ) total++;
             o = {" p":{}}
-            o[" p"]["."+klass] = {foo:6}
+            o[" p"]["&."+klass] = {foo:6}
             o[" p"][prop] = 5
             o[" p"]["@media (min-width:" + width + "em)"] = {bar:7}
             if (
@@ -709,7 +709,7 @@ function randInt() {
                 normalize("p{" + prop +":5;} p." + klass + "{foo:6;} @media (min-width:" + width + "em){p{bar:7;}}")
             ) total++;
             o = {" p":{}}
-            o[" p"]["."+klass] = {foo:6}
+            o[" p"]["&."+klass] = {foo:6}
             o[" p"]["@media (min-width:" + width + "em)"] = {bar:7}
             o[" p"][prop] = 5
             if (
@@ -719,7 +719,7 @@ function randInt() {
             ) total++;
             o = {" p":{}}
             o[" p"]["@media (min-width:" + width + "em)"] = {bar:7}
-            o[" p"]["."+klass] = {foo:6}
+            o[" p"]["&."+klass] = {foo:6}
             o[" p"][prop] = 5
             if (
                 normalize(j2c.sheet(o, {global:true})) 
@@ -729,7 +729,7 @@ function randInt() {
             o = {" p":{}}
             o[" p"]["@media (min-width:" + width + "em)"] = {bar:7}
             o[" p"][prop] = 5
-            o[" p"]["."+klass] = {foo:6}
+            o[" p"]["&."+klass] = {foo:6}
             if (
                 normalize(j2c.sheet(o, {global:true})) 
                 != 

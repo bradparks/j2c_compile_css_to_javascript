@@ -66,6 +66,7 @@ define('j2c', function(){return (function () {
   }
 
   function _concat(a, b, selectorP) {
+    if (selectorP && a && ! (b.indexOf("&") + 1)) throw "'&' is mandatory in sub-selector '"+b+"'";
     return selectorP && b.indexOf("&") + 1 ? b.replace(/&/g, a) : a + b
   }
 
