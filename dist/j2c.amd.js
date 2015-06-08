@@ -1,15 +1,15 @@
 define('j2c', function(){return (function () {
   /*jslint bitwise: true*/
   var
-    j2c = {},
+    o = {},
     empty = [],
-    type = j2c.toString,
-    own =  j2c.hasOwnProperty,
-    OBJECT = type.call(j2c),
+    type = o.toString,
+    own =  o.hasOwnProperty,
+    OBJECT = type.call(o),
     ARRAY =  type.call(empty),
     STRING = type.call(""),
     propertyName = /^[-\w$]+$/,
-    scope_root = "_j2c_" + (Math.random() * 1e9 | 0) + "_" + 1 * (new Date()) + "_",
+    scope_root = "_j2c_" + (Math.random() * 1e9 | 0) + "_" + Date.now() + "_",
     counter = 0;
 
   // Handles the property:value; pairs.
@@ -57,10 +57,44 @@ define('j2c', function(){return (function () {
     }
   }
 
+  function _finalize(buf, postprocess) {
+    if (postprocess) postprocess(buf);
+    return buf.reverse().join("\n");
+  }
+
+  function j2c(options) {
+    /*/-statements-/*/
+    if (options.sheet) return _sheet(options.sheet, options.global || o, options.vendors, options.then);
+    /*/-statements-/*/
+    _declarations(options.inline, buf = [], "", options.vendors || empty);
+    return _finalize(buf, options.then);
+  }
+
+  j2c.prefix = function(val, vendors) {
+    return _cartesian(
+      vendors.map(function(p){return "-" + p + "-";}).concat([""]),
+      [val]
+    );
+  };
 
   
 
   /*/-statements-/*/
+  function _sheet(statements, global, vendors, then, buf, k) {
+    var suffix = global !== true && scope_root + counter++,
+        locals = {};
+    _add(statements, buf = [], "", vendors || empty, suffix && function (match, k) {
+      if ((( match[0] == '.' ? global.classes : global.animations ) || empty).indexOf(k) + 1) return match;
+      if (!locals[k]) (locals[k] = k + suffix);
+      return match + suffix;
+    });
+    /*jshint -W053 */
+    buf = new String(_finalize(buf, then)); 
+    /*jshint +W053 */
+    for (k in locals) if (own.call(locals, k)) buf[k] = locals[k];
+    return buf;
+  }
+
   function _cartesian(a,b, selectorP, res, i, j) {
     res = [];
     for (j in b) if(own.call(b, j))
@@ -154,42 +188,11 @@ define('j2c', function(){return (function () {
       }
     }
   }
-
-  function _finalize(buf, postprocess) {
-    if (postprocess) postprocess(buf);
-    return buf.reverse().join("\n");
-  }
-
-  j2c.inline = function (o, vendors, buf) {
-    _declarations(o, buf = [], "", vendors || empty);
-    return _finalize(buf);
-  };
-
-  j2c.sheet = function (statements, options, buf, k) {
-    options = options || {};
-    var global = options.global || {},
-    suffix = scope_root + counter++,
-    locals = {};
-    _add(statements, buf = [], "", options.vendors || empty, global === true ? false : function (match, k) {
-      if ((( match[0] == '.' ? global.classes : global.animations )|| empty).indexOf(k) + 1) return match;
-      if (!locals[k]) (locals[k] = k + suffix);
-      return match + suffix;
-    });
-    /*jshint -W053 */
-    buf = new String(_finalize(buf, options.then)); 
-    /*jshint +W053 */
-    for (k in locals) if (own.call(locals, k)) buf[k] = locals[k];
-    return buf;
-  };
   /*/-statements-/*/
 
-  j2c.prefix = function(val, vendors) {
-    return _cartesian(
-      vendors.map(function(p){return "-" + p + "-";}).concat([""]),
-      [val]
-    );
-  };
   return j2c;
+
+
 })()
 
 /*

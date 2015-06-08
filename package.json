@@ -23,6 +23,15 @@
       "pattern": "//j2c\\.commonjs/"
     }
   },
+  "testling": {
+    "harness": "mocha-qunit",
+    "files": "test/*.js",
+    "browsers": [
+      "ie/8..latest",
+      "chrome/latest",
+      "firefox/latest"
+    ]
+  },
   "homepage": "http://j2c.py.gy",
   "devDependencies":{
     "uglify-js":"*",

@@ -1,15 +1,15 @@
 module.exports = (function () {
   /*jslint bitwise: true*/
   var
-    j2c = {},
+    o = {},
     empty = [],
-    type = j2c.toString,
-    own =  j2c.hasOwnProperty,
-    OBJECT = type.call(j2c),
+    type = o.toString,
+    own =  o.hasOwnProperty,
+    OBJECT = type.call(o),
     ARRAY =  type.call(empty),
     STRING = type.call(""),
     propertyName = /^[-\w$]+$/,
-    scope_root = "_j2c_" + (Math.random() * 1e9 | 0) + "_" + 1 * (new Date()) + "_",
+    scope_root = "_j2c_" + (Math.random() * 1e9 | 0) + "_" + Date.now() + "_",
     counter = 0;
 
   // Handles the property:value; pairs.
@@ -51,13 +51,25 @@ module.exports = (function () {
     }
   }
 
-
-  /*/-inline-/*/
-  j2c.inline = function (o, vendors, buf) {
-    _declarations(o, buf = [], "", vendors || empty);
+  function _finalize(buf, postprocess) {
+    if (postprocess) postprocess(buf);
     return buf.reverse().join("\n");
+  }
+
+  function j2c(options) {
+    
+    _declarations(options.inline, buf = [], "", options.vendors || empty);
+    return _finalize(buf, options.then);
+  }
+
+  j2c.prefix = function(val, vendors) {
+    return _cartesian(
+      vendors.map(function(p){return "-" + p + "-";}).concat([""]),
+      [val]
+    );
   };
 
+  /*/-inline-/*/
   function _cartesian(a,b, res, i, j) {
     res = [];
     for (j in b) if(own.call(b, j))
@@ -69,13 +81,9 @@ module.exports = (function () {
 
   
 
-  j2c.prefix = function(val, vendors) {
-    return _cartesian(
-      vendors.map(function(p){return "-" + p + "-";}).concat([""]),
-      [val]
-    );
-  };
   return j2c;
+
+
 })()
 
 /*
